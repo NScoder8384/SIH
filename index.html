@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta name=""viewport"
+  content=""width=device-width,
+  initial-scale="1.0">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>SATYADOCS - Jharkhand Government</title>
@@ -87,11 +90,12 @@
 
   <!-- Dashboard Page -->
   <section id="dashboardPage" class="hidden" role="region" aria-label="Dashboard page">
-    <div class="box">
+    <div class="box1">
+      <div class="box2">
       <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
-      <h1>Welcome to SATYADOCS</h1>
-      <p>Upload your academic document (PDF, JPG, PNG), scan QR code or hologram, or enter serial number to verify authenticity.</p>
+      <h1>Welcome to SATYADOCS</h1> </div>      
       <form id="uploadForm" novalidate>
+        <p>Upload your academic document (PDF, JPG, PNG), scan QR code or hologram, or enter serial number to verify authenticity.</p>
         <label for="fileUpload">Upload Document</label>
         <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" />
 
@@ -104,9 +108,10 @@
         <input type="text" id="serialNumber" name="serialNumber" placeholder="e.g. JH2023-123456" />
 
         <button type="submit" class="btn" style="margin-top: 20px;">Check Authenticity</button>
+        <button class="btn" id="logoutBtn" style="background-color:#b71c1c; margin-top:25px;">Logout</button>
       </form>
       <div id="authResult" class="message" style="display:none;"></div>
-      <button class="btn" id="logoutBtn" style="background-color:#b71c1c; margin-top:25px;">Logout</button>
+      
     </div>
   </section>
 
@@ -247,7 +252,7 @@
     setTimeout(() => {
       signInMessage.style.display = 'none';
       showPage(dashboardPage);
-    }, 1200);
+    }, 120);
   });
 
   // Upload form submit
