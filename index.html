@@ -99,12 +99,9 @@
       <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
       <h1>Welcome to SATYADOCS</h1> </div>      
       <form id="uploadForm" novalidate>
-        <p>Upload your academic document (PDF, JPG, PNG), scan QR code or hologram, or enter serial number to verify authenticity.</p>
         <label for="fileUpload">Upload Document</label>
+        <p>Upload your academic document (PDF, JPG, PNG), scan QR code or hologram, or enter serial number to verify authenticity.</p>
         <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" />
-
-        <p style="margin: 15px 0; font-weight: 600;">OR</p>
-
         <button type="button" class="btn" id="scanQRBtn">Scan QR Code</button>
         <button type="button" class="btn" id="scanHologramBtn">Scan Hologram</button>
 
@@ -113,8 +110,9 @@
 
         <button type="submit" class="btn" style="margin-top: 20px;">Check Authenticity</button>
         <button class="btn" id="logoutBtn" style="background-color:#b71c1c; margin-top:25px;">Logout</button>
+        <div id="authResult" class="message" style="display:none;"></div>
       </form>
-      <div id="authResult" class="message" style="display:none;"></div>
+      
       
     </div>
   </section>
@@ -229,7 +227,7 @@
     signUpMessage.textContent = 'Registration successful! You can now log in.';
     signUpMessage.className = 'message success';
     signUpMessage.style.display = 'block';
-    signUpForm.reset();
+    showPage(signInPage);
   });
 
   // Sign In form submit
