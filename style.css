@@ -6,22 +6,25 @@
     margin: 0; padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     height: 100%;
-    background: radial-gradient(circle, rgba(34,139,34,0.9) 0%, rgba(0,128,0,0.8) 100%), url('https://placehold.co/1920x1080') no-repeat center center fixed;
+    background: radial-gradient(circle, rgba(212, 212, 47, 0.9) 0%, rgba(0,128,0,0.8) 100%), url('https://placehold.co/1920x1080') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
   }
-  /* Overlay for dark tint */
+  
+  /* Overlay for dartint */
   .overlay {
-    background-color: rgba(0, 51, 0, 0.8);
+    background-color: rgb(8, 74, 11);
     height: 100%;
+    width:100%;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 20px;
+    opacity: 0.9;
   }
   /* Container box */
   .box {
-    background: rgba(0, 77, 0, 0.95);
+    background: rgba(6, 71, 37, 0.95);
     border-radius: 15px;
     padding: 30px 40px 40px 40px;
     max-width: 450px;
@@ -30,7 +33,7 @@
     text-align: center;
     position: relative;
   }
-  /* Custom Logo: Stylized shield with embedded 'D' for SATYADOCS, representing Jharkhand heritage */
+  /* Custom Logo: Stylized shield with embedded for SATYADOCS, representing Jharkhand heritage */
 
   .logo-image {
   display: block;
