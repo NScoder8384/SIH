@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SATYADOCS - Jharkhand Government</title>
+ <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="overlay">
+  <!-- Landing Page -->
+   <section id="landingPage" role="main" aria-label="Landing page">
+    <div class="box">
+     <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
+      <div class="tagline-hindi">सत्यापन का भरोसेमंद मंच</div>
+      <h1>SATYADOCS</h1>
+      <h2>Department of Higher Education, Government of Jharkhand</h2>
+      <p>Welcome to our platform for authenticating academic documents. Securely verify certificates with QR codes, holograms, and serial numbers.</p>
+      <button class="btn" id="signUpBtn">Sign Up</button>
+      <button class="btn" id="signInBtn">Sign In</button>
+      <nav>
+        <a id="helpLink">Help</a> | <a id="aboutLink">About</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Help Page -->
+  <section id="helpPage" class="hidden" role="region" aria-label="Help page">
+    <div class="box">
+     <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
+      <h1>Help</h1>
+      <p>This platform allows you to verify the authenticity of your academic certificates. Employers, institutions, and government agencies can check credentials here. For assistance, contact: <a href="mailto:support@satyadocs.jh.gov.in" style="color:#a8d5a2;">support@satyadocs.jh.gov.in</a></p>
+      <button class="btn" id="helpBackBtn">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- About Page -->
+  <section id="aboutPage" class="hidden" role="region" aria-label="About page">
+    <div class="box">
+     <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
+      <h1>About SATYADOCS</h1>
+      <p>SATYADOCS is a digital platform by the Government of Jharkhand to verify certificates from higher education institutions. It detects fake degrees using OCR, AI, and blockchain, ensuring academic integrity and public trust. Aimed at admissions offices, employers, and government bodies for secure verification.</p>
+      <button class="btn" id="aboutBackBtn">Back to Home</button>
+    </div>
+  </section>
+
+  <!-- Sign Up Page -->
+  <section id="signUpPage" class="hidden" role="region" aria-label="Sign up page">
+    <div class="box" role="form" aria-labelledby="signUpTitle">
+      <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
+      <h1 id="signUpTitle">Sign Up</h1>
+      <form id="signUpForm" novalidate>
+        <label for="signupName">Full Name</label>
+        <input type="text" id="signupName" name="signupName" placeholder="Enter your full name" required aria-required="true" />
+
+        <label for="signupEmail">Email</label>
+        <input type="email" id="signupEmail" name="signupEmail" placeholder="example@mail.com" required aria-required="true" />
+
+        <label for="signupPassword">Password</label>
+        <input type="password" id="signupPassword" name="signupPassword" placeholder="Enter a strong password" required aria-required="true" />
+
+        <button type="submit" class="btn">Register</button>
+      </form>
+      <button class="btn" id="signUpBackBtn">Back to Home</button>
+      <div id="signUpMessage" class="message" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- Sign In Page -->
+  <section id="signInPage" class="hidden" role="region" aria-label="Sign in page">
+    <div class="box" role="form" aria-labelledby="signInTitle">
+    <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
+      <h1 id="signInTitle">Sign In</h1>
+      <form id="signInForm" novalidate>
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" name="loginEmail" placeholder="example@mail.com" required aria-required="true" />
+
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" required aria-required="true" />
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <button class="btn" id="signInBackBtn">Back to Home</button>
+      <div id="signInMessage" class="message" style="display:none;"></div>
+    </div>
+  </section>
+
+  <!-- Dashboard Page -->
+  <section id="dashboardPage" class="hidden" role="region" aria-label="Dashboard page">
+    <div class="box">
+      <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
+      <h1>Welcome to SATYADOCS</h1>
+      <p>Upload your academic document (PDF, JPG, PNG), scan QR code or hologram, or enter serial number to verify authenticity.</p>
+      <form id="uploadForm" novalidate>
+        <label for="fileUpload">Upload Document</label>
+        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" />
+
+        <p style="margin: 15px 0; font-weight: 600;">OR</p>
+
+        <button type="button" class="btn" id="scanQRBtn">Scan QR Code</button>
+        <button type="button" class="btn" id="scanHologramBtn">Scan Hologram</button>
+
+        <label for="serialNumber" style="margin-top: 20px;">Enter Certificate Serial Number</label>
+        <input type="text" id="serialNumber" name="serialNumber" placeholder="e.g. JH2023-123456" />
+
+        <button type="submit" class="btn" style="margin-top: 20px;">Check Authenticity</button>
+      </form>
+      <div id="authResult" class="message" style="display:none;"></div>
+      <button class="btn" id="logoutBtn" style="background-color:#b71c1c; margin-top:25px;">Logout</button>
+    </div>
+  </section>
+
+</div>
+
+<!-- Popup container -->
+<div id="popupOverlay" class="popup-overlay hidden"></div>
+<div id="popup" class="popup hidden">
+  <p id="popupMessage"></p>
+  <button id="popupOkBtn">OK</button>
+</div>
+
+<script>
+  // Elements
+  const landingPage = document.getElementById('landingPage');
+  const helpPage = document.getElementById('helpPage');
+  const aboutPage = document.getElementById('aboutPage');
+  const signUpPage = document.getElementById('signUpPage');
+  const signInPage = document.getElementById('signInPage');
+  const dashboardPage = document.getElementById('dashboardPage');
+
+  const signUpBtn = document.getElementById('signUpBtn');
+  const signInBtn = document.getElementById('signInBtn');
+  const helpLink = document.getElementById('helpLink');
+  const aboutLink = document.getElementById('aboutLink');
+
+  const helpBackBtn = document.getElementById('helpBackBtn');
+  const aboutBackBtn = document.getElementById('aboutBackBtn');
+  const signUpBackBtn = document.getElementById('signUpBackBtn');
+  const signInBackBtn = document.getElementById('signInBackBtn');
+  const logoutBtn = document.getElementById('logoutBtn');
+
+  const signUpForm = document.getElementById('signUpForm');
+  const signInForm = document.getElementById('signInForm');
+  const uploadForm = document.getElementById('uploadForm');
+
+  const signUpMessage = document.getElementById('signUpMessage');
+  const signInMessage = document.getElementById('signInMessage');
+  const authResult = document.getElementById('authResult');
+
+  const scanQRBtn = document.getElementById('scanQRBtn');
+  const scanHologramBtn = document.getElementById('scanHologramBtn');
+
+  const popupOverlay = document.getElementById('popupOverlay');
+  const popup = document.getElementById('popup');
+  const popupMessage = document.getElementById('popupMessage');
+  const popupOkBtn = document.getElementById('popupOkBtn');
+
+  // Show popup
+  function showPopup(message) {
+    popupMessage.textContent = message;
+    popupOverlay.classList.remove('hidden');
+    popup.classList.remove('hidden');
+  }
+
+  popupOkBtn.onclick = () => {
+    popup.classList.add('hidden');
+    popupOverlay.classList.add('hidden');
+  };
+
+  // Show only one page
+  function showPage(page) {
+    [landingPage, helpPage, aboutPage, signUpPage, signInPage, dashboardPage].forEach(p => p.classList.add('hidden'));
+    page.classList.remove('hidden');
+  }
+
+  // Initial
+  showPage(landingPage);
+
+  // Navigation handlers
+  signUpBtn.onclick = () => {
+    signUpMessage.style.display = 'none';
+    signUpForm.reset();
+    showPage(signUpPage);
+  };
+  signInBtn.onclick = () => {
+    signInMessage.style.display = 'none';
+    signInForm.reset();
+    showPage(signInPage);
+  };
+  helpLink.onclick = () => showPage(helpPage);
+  aboutLink.onclick = () => showPage(aboutPage);
+
+  helpBackBtn.onclick = () => showPage(landingPage);
+  aboutBackBtn.onclick = () => showPage(landingPage);
+  signUpBackBtn.onclick = () => showPage(landingPage);
+  signInBackBtn.onclick = () => showPage(landingPage);
+  logoutBtn.onclick = () => {
+    showPopup('You have been logged out.');
+    setTimeout(() => showPage(landingPage), 1500);
+  };
+
+  // Sign Up form submit
+  signUpForm.addEventListener('submit', e => {
+    e.preventDefault();
+    signUpMessage.style.display = 'none';
+
+    const name = signUpForm.signupName.value.trim();
+    const email = signUpForm.signupEmail.value.trim();
+    const password = signUpForm.signupPassword.value.trim();
+
+    if (!name || !email || !password) {
+      showPopup('All fields are mandatory. Please fill in all details.');
+      return;
+    }
+    if (!validateEmail(email)) {
+      showPopup('Please enter a valid email address.');
+      return;
+    }
+    // Simulate registration success
+    signUpMessage.textContent = 'Registration successful! You can now log in.';
+    signUpMessage.className = 'message success';
+    signUpMessage.style.display = 'block';
+    signUpForm.reset();
+  });
+
+  // Sign In form submit
+  signInForm.addEventListener('submit', e => {
+    e.preventDefault();
+    signInMessage.style.display = 'none';
+
+    const email = signInForm.loginEmail.value.trim();
+    const password = signInForm.loginPassword.value.trim();
+
+    if (!email || !password) {
+      showPopup('All fields are mandatory. Please enter email and password.');
+      return;
+    }
+    if (!validateEmail(email)) {
+      showPopup('Please enter a valid email address.');
+      return;
+    }
+    // Simulate login success
+    signInMessage.textContent = 'Login successful! Redirecting...';
+    signInMessage.className = 'message success';
+    signInMessage.style.display = 'block';
+
+    setTimeout(() => {
+      signInMessage.style.display = 'none';
+      showPage(dashboardPage);
+    }, 1200);
+  });
+
+  // Upload form submit
+  uploadForm.addEventListener('submit', e => {
+    e.preventDefault();
+    authResult.style.display = 'none';
+
+    const fileInput = uploadForm.fileUpload.files[0];
+    const serialNumber = uploadForm.serialNumber.value.trim();
+
+    if (!fileInput && !serialNumber) {
+      showPopup('Please upload a document or enter a serial number to proceed.');
+      return;
+    }
+
+    // Simulate authenticity check
+    if (serialNumber && serialNumber.toUpperCase().startsWith('JH') && serialNumber.length > 5) {
+      authResult.textContent = 'Certificate is authentic and verified!';
+      authResult.className = 'message success';
+      authResult.style.display = 'block';
+    } else if (fileInput) {
+      authResult.textContent = 'Document uploaded successfully. Authenticity confirmed!';
+      authResult.className = 'message success';
+      authResult.style.display = 'block';
+    } else {
+      authResult.textContent = 'Verification failed. Certificate may be invalid or forged.';
+      authResult.className = 'message error';
+      authResult.style.display = 'block';
+    }
+  });
+
+  // Scan buttons
+  scanQRBtn.onclick = () => showPopup('QR Code scanning feature is under development. Please upload or enter serial number.');
+  scanHologramBtn.onclick = () => showPopup('Hologram scanning feature is under development. Please upload or enter serial number.');
+
+  // Email validation
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+</script>
+</body>
+</html>
+</content>
+</create_file>
