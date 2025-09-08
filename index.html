@@ -1,6 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Animated Characters Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #377c3a 0%, #1e811e 25%, #32d16f 50%, #36b56b 75%, #36d55e 100%);
+            position: relative;
+        }
+
+        /* Animated background elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        /* Big animated characters */
+        .big-character {
+            position: absolute;
+            font-size: 8rem;
+            opacity: 0.1;
+            color: #10b981;
+            text-shadow: 0 0 50px rgba(16, 185, 30, 0.831);
+        }
+
+        .char-1 {
+            top: 10%;
+            left: 15%;
+            animation: scaleRotate 6s infinite ease-in-out;
+            animation-delay: 0s;
+        }
+
+        .char-2 {
+            top: 20%;
+            right: 10%;
+            animation: bounceScale 4s infinite ease-in-out;
+            animation-delay: -1s;
+        }
+
+        .char-3 {
+            bottom: 30%;
+            left: 20%;
+            animation: pulseRotate 5s infinite ease-in-out;
+            animation-delay: -2s;
+        }
+
+        .char-4 {
+            top: 50%;
+            right: 25%;
+            animation: wiggleScale 7s infinite ease-in-out;
+            animation-delay: -3s;
+        }
+
+        .char-5 {
+            bottom: 15%;
+            right: 15%;
+            animation: floatRotate 8s infinite ease-in-out;
+            animation-delay: -4s;
+        }
+
+        .char-6 {
+            top: 35%;
+            left: 5%;
+            animation: scaleRotate 6s infinite ease-in-out;
+            animation-delay: -2.5s;
+        }
+
+        @keyframes scaleRotate {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: scale(1.3) rotate(180deg);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes bounceScale {
+            0%, 100% {
+                transform: scale(1) translateY(0);
+                opacity: 0.1;
+            }
+            25% {
+                transform: scale(1.2) translateY(-20px);
+                opacity: 0.15;
+            }
+            75% {
+                transform: scale(0.9) translateY(10px);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes pulseRotate {
+            0%, 100% {
+                transform: scale(0.8) rotate(0deg);
+                opacity: 0.08;
+            }
+            50% {
+                transform: scale(1.4) rotate(360deg);
+                opacity: 0.25;
+            }
+        }
+
+        @keyframes wiggleScale {
+            0%, 100% {
+                transform: scale(1) rotate(0deg) skew(0deg);
+                opacity: 0.1;
+            }
+            25% {
+                transform: scale(1.1) rotate(5deg) skew(2deg);
+                opacity: 0.15;
+            }
+            75% {
+                transform: scale(1.2) rotate(-5deg) skew(-2deg);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes floatRotate {
+            0%, 100% {
+                transform: scale(1) rotate(0deg) translateY(0);
+                opacity: 0.1;
+            }
+            33% {
+                transform: scale(1.2) rotate(120deg) translateY(-15px);
+                opacity: 0.18;
+            }
+            66% {
+                transform: scale(0.9) rotate(240deg) translateY(15px);
+                opacity: 0.15;
+            }
+        }
+
+        /* Medium sized validation symbols */
+        .validation-char {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.15;
+            animation: validationPulse 3s infinite ease-in-out;
+        }
+
+        .valid { color: #10b981; }
+        .invalid { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .processing { color: #3b82f6; }
+
+        .val-1 { top: 25%; left: 50%; animation-delay: 0s; }
+        .val-2 { top: 65%; left: 70%; animation-delay: -1s; }
+        .val-3 { top: 45%; left: 35%; animation-delay: -2s; }
+        .val-4 { top: 75%; left: 45%; animation-delay: -1.5s; }
+
+        @keyframes validationPulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.15;
+                filter: blur(0px);
+            }
+            50% {
+                transform: scale(1.3);
+                opacity: 0.3;
+                filter: blur(1px);
+            }
+        }
+
+        /* Glowing orbs */
+        .glow-orb {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(26, 192, 14, 0.842) 0%, transparent 70%);
+            animation: orbGlow 4s infinite ease-in-out;
+        }
+
+        .orb-1 { top: 60%; left: 10%; animation-delay: 0s; }
+        .orb-2 { top: 15%; left: 60%; animation-delay: -2s; }
+        .orb-3 { bottom: 20%; right: 30%; animation-delay: -1s; }
+
+        @keyframes orbGlow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.1;
+            }
+        }
+
+        /* Demo content */
+        .demo-content {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+
+        .demo-text {
+            background: rgba(36, 151, 47, 0.929);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(15, 217, 82, 0.89);
+            box-shadow: 0 20px 40px rgba(19, 174, 53, 0.799);
+        }
+
+        .demo-text h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #10b981, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <!-- Big animated document characters -->
+        <div class="big-character char-1">📄</div>
+        <div class="big-character char-2">📋</div>
+        <div class="big-character char-3">🔍</div>
+        <div class="big-character char-4">📊</div>
+        <div class="big-character char-5">📝</div>
+        <div class="big-character char-6">🗂️</div>
+
+        <!-- Validation symbols -->
+        <div class="validation-char valid val-1">✓</div>
+        <div class="validation-char invalid val-2">✗</div>
+        <div class="validation-char warning val-3">⚠️</div>
+        <div class="validation-char processing val-4">⟳</div>
+
+        <!-- Glowing orbs -->
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+   
+    </div>
+
+    <script>
+        // Add some dynamic character spawning
+        function addRandomCharacter() {
+            const characters = ['📑', '📈', '📉', '🔒', '🔓', '⭐', '💼', '🎯'];
+            const char = document.createElement('div');
+            char.className = 'big-character';
+            char.textContent = characters[Math.floor(Math.random() * characters.length)];
+            char.style.top = Math.random() * 80 + '%';
+            char.style.left = Math.random() * 80 + '%';
+            char.style.fontSize = (Math.random() * 4 + 6) + 'rem';
+            char.style.animation = `scaleRotate ${Math.random() * 4 + 4}s infinite ease-in-out`;
+            char.style.animationDelay = `-${Math.random() * 3}s`;
+            
+            document.querySelector('.bg-animation').appendChild(char);
+
+            // Remove after some time
+            setTimeout(() => {
+                if (char.parentNode) {
+                    char.parentNode.removeChild(char);
+                }
+            }, 15000);
+        }
+
+        // Add new characters periodically
+        setInterval(addRandomCharacter, 8000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97b87f3812354850',t:'MTc1NzI3MjEyOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
   <meta name="viewport"
   content=""width=device-width,
   initial-scale="1.0">
@@ -10,16 +298,14 @@
  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="animated.html"></div>
 <div class="overlay">
 
   <!-- Landing Page -->
    <section id="landingPage" role="main" aria-label="Landing page">
     <div class="box">
      <img src="image/Government gggg.png" alt="SATYADOCS Logo" class="logo-image" />
-     <div class ="m2">
-       <img src="image/green.png" />
-     </div>
-      <div class="tagline-hindi">सत्यापन का भरोसेमंद मंच</div>
+     <div class="tagline-hindi">सत्यापन का भरोसेमंद मंच</div>
       <h1>SATYADOCS</h1>
       <h2>Department of Higher Education, Government of Jharkhand</h2>
       <p>Welcome to our platform for authenticating academic documents. Securely verify certificates with QR codes, holograms, and serial numbers.</p>
@@ -103,6 +389,7 @@
         <p>Upload your academic document (PDF, JPG, PNG), scan QR code or hologram, or enter serial number to verify authenticity.</p>
         <input type="file" id="fileUpload" name="fileUpload" accept=".pdf, .jpg, .jpeg, .png" />
         <button type="button" class="btn" id="scanQRBtn">Scan QR Code</button>
+        <button type="button" class="btn" id="Fingerprintauthenticity">Finger print authenticity</button>
         <button type="button" class="btn" id="scanHologramBtn">Scan Hologram</button>
 
         <label for="serialNumber" style="margin-top: 20px;">Enter Certificate Serial Number</label>
